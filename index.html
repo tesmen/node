@@ -1,0 +1,22 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<script>
+    const socket = io.connect('ws://localhost:3000');
+
+    socket.on('news', function (data) {
+        console.log(data);
+        for (var i = 0; i < 100; i++) {
+            socket.emit('my other event', {my: 'data'});
+
+        }
+    });
+
+    $(document).mousemove(function (event) {
+        var msg = "Handler for .mousemove() called at ";
+        msg += event.pageX + ", " + event.pageY;
+        socket.emit('mouse', {my: msg});
+// console.log(msg)
+    });
+</script>
