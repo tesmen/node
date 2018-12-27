@@ -19,12 +19,13 @@ function handler(req, res) {
         });
 }
 
-let ccc = 0;
+async function mouseHandler(data) {
+    db.query(`INSERT INTO coordinates (x,y) VALUES (${data.x}, ${data.y})`);
+    console.log(data);
+}
+
+
 io.sockets.on('connection', function (socket) {
     socket.emit('news', {hello: 'world'});
-
-    socket.on('mouse', function (data) {
-        ccc++;
-        console.log(ccc);
-    });
+    socket.on('mouse', mouseHandler);
 });

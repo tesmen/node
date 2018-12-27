@@ -14,9 +14,8 @@
     });
 
     $(document).mousemove(function (event) {
-        var msg = "Handler for .mousemove() called at ";
-        msg += event.pageX + ", " + event.pageY;
-        socket.emit('mouse', {my: msg});
-// console.log(msg)
+        msg = {x: event.pageX, y: event.pageY};
+        console.log(msg);
+        socket.emit('mouse', msg);
     });
 </script>
