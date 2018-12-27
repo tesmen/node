@@ -1,6 +1,8 @@
-var app = require('http').createServer(handler)
+const db = require('./lib/core/db');
+
+const app = require('http').createServer(handler)
     , io = require('socket.io').listen(app)
-    , fs = require('fs')
+    , fs = require('fs');
 
 app.listen(3000);
 
@@ -16,7 +18,8 @@ function handler(req, res) {
             res.end(data);
         });
 }
-var ccc=0;
+
+let ccc = 0;
 io.sockets.on('connection', function (socket) {
     socket.emit('news', {hello: 'world'});
 
